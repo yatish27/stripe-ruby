@@ -21,6 +21,9 @@ module Stripe
       assert receivers.data.kind_of? Array
       receivers.each do |receiver|
         assert receiver.kind_of?(Stripe::BitcoinReceiver)
+        receiver.transactions.data.each do |transaction|
+          assert transaction.kind_of?(Stripe::BitcoinTransaction)
+        end
       end
     end
   end
